@@ -686,14 +686,14 @@ footer {
        ヘッダー
        ------------------------ */
     header {
-        padding: 15px 20px;
+        padding: 5px 15px; /* 上下の余白をギュッと減らす */
         flex-direction: column;
-        gap: 15px;
+        gap: 5px; /* ロゴとメニューの間隔も詰める */
     }
 
     .logo {
-        width: 120px; /* 少し小さく */
-        height: 50px;
+        width: 110px;
+        height: 45px;
     }
 
     nav {
@@ -705,7 +705,8 @@ footer {
         padding: 0;
         justify-content: center;
         width: 100%;
-        gap: 15px;
+        gap: 10px; /* メニュー同士の間隔も少し詰める */
+        margin: 0;
     }
 
     nav a {
