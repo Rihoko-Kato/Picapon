@@ -1,0 +1,259 @@
+/* ベース設定 */
+:root {
+    --bg-color: #FDFCF5;
+    /* パネルの背景っぽいクリーム色 */
+    --accent-color: #F4B846;
+    /* ぴかぽんのボディのようなオレンジ/黄色 */
+    --text-color: #5D4037;
+    /* 優しい焦げ茶色 */
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    /* 丸ゴシック */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+}
+
+/* コンテナ（共通の幅設定） */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* ヘッダー */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: rgba(253, 252, 245, 0.9);
+    /* 少し透ける */
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+/* ヒーローセクション */
+.hero {
+    height: 100vh;
+    /* 画面いっぱいの高さ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.hero-img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 20px;
+    margin-top: 30px;
+    box-shadow: 0 10px 30px rgba(244, 184, 70, 0.2);
+    /* ふんわりした影 */
+}
+
+/* アニメーション（フェードイン） */
+.fade-in {
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 各セクション共通 */
+section {
+    padding: 100px 0;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--accent-color);
+}
+
+/* 機能（3つの丸） */
+.feature-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.circle {
+    width: 180px;
+    height: 180px;
+    background-color: #F8E6C8;
+    /* 薄いオレンジ */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.circle:hover {
+    transform: scale(1.05);
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+/* リサーチ（グラフ） */
+.section-research {
+    background-color: #fff;
+}
+
+.label-english {
+    color: var(--accent-color);
+    font-family: serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.pie-chart {
+    width: 200px;
+    height: 200px;
+    background: conic-gradient(var(--accent-color) 0% 81%, #eee 81% 100%);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.percentage {
+    background: #fff;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* つかいかた */
+.interaction-demo {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.demo-box {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 2px solid #eee;
+}
+
+.user-voice {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+.note {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 15px;
+}
+
+/* フッター */
+footer {
+    background-color: var(--text-color);
+    color: var(--white);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+/* レスポンシブ対応（スマホ向け） */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .feature-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    /* 簡易的にメニューを隠す */
+}
