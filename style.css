@@ -750,8 +750,8 @@ footer {
     }
 
     .usage-img {
-        object-fit: contain; /* PC版と同じく全身を表示 */
-        object-position: center bottom; /* 下中央に合わせて配置 */
+        object-fit: contain; /* ユーザーがトリミングした画像をそのまま表示 */
+        object-position: center;
     }
 
     .steps {
