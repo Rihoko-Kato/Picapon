@@ -720,6 +720,12 @@ footer {
     margin-top: 30px;
 }
 
+.contact-note {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
 .btn-submit {
     background-color: var(--accent-color);
     color: var(--text-color);
