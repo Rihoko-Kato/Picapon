@@ -1,2 +1,2 @@
 # Picapon
-pikapon Official Website
+picapon Official Website
