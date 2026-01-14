@@ -1,4 +1,9 @@
 /* ベース設定 */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 130px; /* 固定ヘッダーの分だけずらす */
+}
+
 * {
     box-sizing: border-box;
 }
@@ -741,6 +746,10 @@ footer {
     /* ------------------------
        全体レイアウト
        ------------------------ */
+    html {
+        scroll-padding-top: 100px; /* スマホ用ヘッダー高さ調整 */
+    }
+
     section {
         padding: 60px 0;
     }
