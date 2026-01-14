@@ -13,6 +13,11 @@
 
     <header>
         <a href="#" class="logo">picapon</a>
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav>
             <ul>
                 <li><a href="#concept">Concept</a></li>
@@ -225,6 +230,37 @@
         </div>
     </section>
 
+    <section id="contact" class="section-contact">
+        <div class="container">
+            <h2>お問い合わせ</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">お名前</label>
+                    <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" name="email" placeholder="example@picapon.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">件名</label>
+                    <select id="category" name="category">
+                        <option value="product">製品について</option>
+                        <option value="support">サポート・修理について</option>
+                        <option value="other">その他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">内容</label>
+                    <textarea id="message" name="message" rows="5" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+                </div>
+                <div class="form-footer">
+                    <button type="submit" class="btn-submit">送信する</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-logo">picapon</div>
@@ -245,6 +281,26 @@
             const pieChart = document.querySelector('.pie-chart');
             if (pieChart) {
                 observer.observe(pieChart);
+            }
+
+            // ハンバーガーメニューの開閉処理
+            const hamburger = document.querySelector('.hamburger-menu');
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('nav a');
+
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    nav.classList.toggle('active');
+                });
+
+                // メニューリンクをクリックしたら閉じる
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    });
+                });
             }
         });
     </script>
