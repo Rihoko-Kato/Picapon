@@ -303,6 +303,22 @@
                     });
                 });
             }
+
+            // Featuresの丸をスマホでタップしたときの挙動
+            const circles = document.querySelectorAll('.circle');
+            circles.forEach(circle => {
+                circle.addEventListener('click', function(e) {
+                    // 他の円のactiveクラスを外す（ひとつだけ開くようにする）
+                    circles.forEach(c => {
+                        if (c !== this) {
+                            c.classList.remove('active');
+                        }
+                    });
+                    
+                    // 自分自身にactiveクラスをトグル
+                    this.classList.toggle('active');
+                });
+            });
         });
     </script>
 

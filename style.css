@@ -389,7 +389,8 @@ h2 {
     transition: all 0.4s ease;
 }
 
-.circle:hover {
+.circle:hover,
+.circle.active {
     width: 260px;
     height: 260px;
     background-color: var(--accent-color);
@@ -397,7 +398,8 @@ h2 {
     transform: translateY(-10px);
 }
 
-.circle:hover .detail-text {
+.circle:hover .detail-text,
+.circle.active .detail-text {
     max-height: 100px;
     opacity: 1;
     margin-top: 15px;
