@@ -304,14 +304,42 @@ h2 {
 
     /* つかいかた：スマホレイアウト */
     .howtouse-content {
-        flex-direction: column-reverse;
-        /* スマホでは画像を上に */
+        display: block;
+        padding: 0;
     }
 
     .usage-image-container {
+        position: relative;
         width: 100%;
         height: 300px;
-        /* スマホでの高さ指定 */
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .usage-img {
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    .steps {
+        max-width: 100%;
+        background-color: transparent;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    /* よくある質問：スマホ */
+    .faq-item {
+        flex-direction: column;
+    }
+
+    .faq-question {
+        padding: 20px;
+        min-height: 120px;
+    }
+
+    .faq-answer {
+        padding: 20px;
     }
 }
 
@@ -433,19 +461,25 @@ h2 {
 /* つかいかた */
 .interaction-demo {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    /* 左揃え */
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 20px;
     flex-wrap: wrap;
 }
 
 .demo-box {
-    background: var(--white);
-    padding: 30px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 20px;
     border-radius: 15px;
-    width: 300px;
+    flex: 1;
+    /* 幅を柔軟に */
+    min-width: 240px;
+    max-width: 300px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    border: 2px solid #eee;
+    border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .user-voice {
@@ -464,18 +498,28 @@ h2 {
 
 /* つかいかた：レイアウト */
 .howtouse-content {
+    position: relative;
+    /* 重ね合わせの基準 */
+    min-height: 600px;
     display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    text-align: left;
+    /* 上下中央揃えのため */
+    align-items: center;
+    padding: 20px;
 }
 
 .steps {
-    flex: 1;
+    position: relative;
+    z-index: 2;
+    max-width: 550px;
+    /* 背景色などのカードスタイルを削除 */
 }
 
 .step {
     margin-bottom: 40px;
+}
+
+.step:last-child {
+    margin-bottom: 0;
 }
 
 .step h3 {
@@ -485,29 +529,134 @@ h2 {
     margin-bottom: 15px;
 }
 
-/* 使用イメージ（右側・トリミング） */
+/* 使用イメージ（背景として配置） */
 .usage-image-container {
-    flex: 1;
-    /* 高さを指定して、それ以上は切り取る */
-    height: 500px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65%;
+    /* 右側80%を占める（左側は余白） */
+    height: 100%;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    z-index: 1;
 }
 
 .usage-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    /* 枠いっぱいに表示（はみ出しはカット） */
-    object-position: top;
-    /* 上を基準にする（下側がカットされる） */
+    object-fit: contain;
+    /* 全体を表示 */
+    object-position: bottom right;
+    /* 右下基準 */
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    /* 左側をフェードアウトさせて文字を見やすく */
+}
+
+/* よくある質問 (Q&A) */
+.section-faq {
+    background-color: #fff;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    display: flex;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    min-height: 200px;
+    border: 1px solid #ddd;
+}
+
+.faq-question {
+    flex: 1;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.faq-question p {
+    margin: 5px 0;
+}
+
+.faq-question .sub-q {
+    font-size: 0.9rem;
+    font-weight: normal;
+    opacity: 0.9;
+    margin-top: 10px;
+}
+
+.faq-answer {
+    flex: 2;
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.faq-answer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.faq-answer li {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.faq-answer li:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    background-color: #777;
+    border-radius: 50%;
+}
+
+.bullet-title {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.bullet-desc {
+    margin: 0;
+    padding-left: 1rem;
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
 }
 
 /* フッター */
 footer {
-    background-color: var(--text-color);
-    color: var(--white);
+    background-color: var(--accent-color);
+    /* アクセントカラー（濃いオレンジ） */
+    color: var(--text-color);
     padding: 40px 0;
     text-align: center;
 }
@@ -515,7 +664,7 @@ footer {
 .footer-logo {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    color: var(--accent-color);
+    color: var(--text-color);
 }
 
 /* レスポンシブ対応（スマホ向け） */
@@ -555,5 +704,79 @@ footer {
     .feature-grid {
         flex-direction: column;
         align-items: center;
+    }
+
+    /* 以下、スマホ専用のレイアウト修正（PCには影響しません） */
+
+    /* 1. コンセプト：画像を上に、文字を下に */
+    .concept-layout {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .concept-image {
+        width: 100%;
+        height: 300px;
+    }
+
+    .img-origin {
+        right: 10%;
+        width: 120px;
+    }
+
+    .img-flying {
+        left: 50%;
+        transform: translateX(-50%) rotate(-10deg);
+        width: 200px;
+    }
+
+    /* 2. つかいかた：画像を上に、文字を下に（重ならないようにする） */
+    .howtouse-content {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+        padding-top: 0;
+    }
+
+    .usage-image-container {
+        position: relative; /* 絶対配置をやめる */
+        width: 100%;
+        height: 250px;
+        order: -1; /* 画像を一番上に持ってくる */
+        margin-bottom: 30px;
+        mask-image: none; /* マスク（ぼかし）を解除 */
+        -webkit-mask-image: none;
+    }
+
+    .usage-img {
+        object-fit: cover; /* 枠に合わせてトリミング（スマホサイズに合わせて） */
+        object-position: center;
+    }
+
+    .steps {
+        max-width: 100%;
+    }
+
+    .interaction-demo {
+        flex-direction: column;
+    }
+
+    .demo-box {
+        max-width: 100%;
+    }
+
+    /* 3. よくある質問：縦並びにする */
+    .faq-item {
+        flex-direction: column;
+    }
+
+    .faq-question {
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .faq-answer {
+        padding: 20px;
     }
 }
