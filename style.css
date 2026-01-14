@@ -748,6 +748,7 @@ footer {
 
     .sub-text {
         font-size: 0.9rem;
+        margin-bottom: 220px; /* ぴかぽん本体を避けるために大きくスペースを空ける */
     }
 
     /* 背景画像調整 */
