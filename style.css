@@ -48,9 +48,21 @@ header {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--accent-color);
+    display: block;
+    width: 140px;
+    height: 50px;
+    background-color: var(--accent-color);
+    -webkit-mask-image: url('images/logo.png');
+    mask-image: url('images/logo.png');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+    mask-position: left center;
+    /* テキストを隠す */
+    text-indent: -9999px;
+    overflow: hidden;
 }
 
 nav ul {
@@ -162,7 +174,7 @@ h2 {
 
 .label-english {
     color: var(--accent-color);
-    font-family: serif;
+    font-family: 'Zen Maru Gothic', sans-serif;
     font-style: italic;
     font-size: 1.2rem;
     display: block;
