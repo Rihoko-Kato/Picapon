@@ -742,7 +742,7 @@ footer {
     .usage-image-container {
         position: relative; /* 絶対配置をやめる */
         width: 100%;
-        height: 250px;
+        height: 400px; /* 全身が見えるように高さを確保 */
         order: -1; /* 画像を一番上に持ってくる */
         margin-bottom: 30px;
         mask-image: none; /* マスク（ぼかし）を解除 */
@@ -750,8 +750,8 @@ footer {
     }
 
     .usage-img {
-        object-fit: cover; /* 枠に合わせてトリミング（スマホサイズに合わせて） */
-        object-position: center;
+        object-fit: contain; /* PC版と同じく全身を表示 */
+        object-position: center bottom; /* 下中央に合わせて配置 */
     }
 
     .steps {
