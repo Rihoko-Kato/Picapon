@@ -2036,3 +2036,20 @@ footer {
     }
 }
 
+
+/* insekiponから発射されるアニメーション */
+@keyframes pikaShoot {
+    0% {
+        transform: translate(0, 0) scale(0.2) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translate(-30px, 30px) scale(0.6) rotate(-10deg);
+    }
+    100% {
+        transform: translate(-900px, 700px) scale(1.2) rotate(-90deg); /* 左下へ大きく移動しながら回転 */
+        opacity: 0;
+    }
+}
+
