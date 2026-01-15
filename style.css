@@ -1738,3 +1738,43 @@ footer {
     opacity: 0.8;
 }
 
+
+/* PC表示ではコンテナの配置基準を設定 */
+.phone-and-hand-container {
+    position: relative;
+    /* PCではサイズ指定不要（中身なり） */
+}
+
+@media (max-width: 768px) {
+    /* コンテナごと縮小することで、スマホと指の関係性を維持 */
+    .phone-and-hand-container {
+        /* スマホフレーム(780px) + 指の分などを考慮した幅 */
+        width: 780px; 
+        height: 380px;
+        
+        transform: scale(0.48); /* 画面サイズに合わせて全体を縮小 */
+        transform-origin: center center;
+        
+        /* 縮小分の余白調整 */
+        margin-top: -80px;
+        margin-bottom: -80px;
+        margin-left: -50px; /* 左にはみ出しがちなのを補正 */
+    }
+
+    /* フレーム自体の個別縮小は解除（親でまとめて縮小するため） */
+    .smartphone-frame-landscape {
+        transform: none;
+        margin: 0;
+        min-width: auto;
+    }
+    
+    /* 指の個別設定も解除（PCと同じ比率で表示されるため） */
+    .hand-thumb-simple {
+        width: 80px;
+        height: 100px;
+        left: -10px;
+        bottom: -25px;
+        /* PCの設定値をそのまま使うので上書き不要だが、念のため明示 */
+    }
+}
+
