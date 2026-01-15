@@ -1708,3 +1708,15 @@ footer {
     border-radius: 15%; /* 角丸四角に */
 }
 
+
+/* 動画撮影指示メッセージ */
+.movie-instruction {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-top: -30px; /* 見出しとの間を詰める */
+    margin-bottom: 20px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
