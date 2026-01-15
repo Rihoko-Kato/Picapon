@@ -1972,3 +1972,32 @@ footer {
     transition: opacity 0.3s;
 }
 
+
+/* 降り注ぐぴかぽんのアニメーション */
+.falling-pika {
+    position: fixed;
+    top: -100px;
+    z-index: 9999; /* 最前面に表示 */
+    pointer-events: none; /* クリックなどを邪魔しない */
+    opacity: 0;
+    user-select: none;
+    will-change: transform;
+}
+
+@keyframes pikaFall {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8; /* フェードイン */
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-120vw, 120vh) rotate(-360deg); /* 画面を斜めに大きく横切る */
+        opacity: 0;
+    }
+}
+
