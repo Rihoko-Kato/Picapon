@@ -1081,3 +1081,94 @@ footer {
     margin-bottom: 0;
 }
 
+
+/* 動画セクション（スマホ風フレーム） */
+.section-movie {
+    background-color: #f9f9f9;
+    padding-bottom: 80px;
+}
+
+.smartphone-frame-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+.smartphone-frame-landscape {
+    position: relative;
+    width: 600px;
+    height: 337px; /* 16:9に近い比率 + 余白 */
+    background-color: #1a1a1a;
+    border-radius: 36px;
+    padding: 12px 50px 12px 12px; /* 右側に持ち手スペース */
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.3),
+        inset 0 0 4px rgba(255,255,255,0.1),
+        inset 0 0 0 2px #333;
+    border: 4px solid #4a4a4a;
+    display: flex;
+    align-items: center;
+}
+
+.smartphone-frame-landscape .screen {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid #000;
+}
+
+.smartphone-frame-landscape video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* カメラノッチ風装飾 */
+.smartphone-frame-landscape::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 22px; /* ノッチ位置 */
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: #0f0f0f;
+    border-radius: 50%;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.8);
+    border: 1px solid #222;
+}
+
+/* 画面の反射光（うっすらと） */
+.smartphone-frame-landscape::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    z-index: 10;
+}
+
+/* スマホ表示時の調整 */
+@media (max-width: 768px) {
+    .smartphone-frame-landscape {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        padding: 8px 35px 8px 8px;
+        border-radius: 20px;
+    }
+    
+    .smartphone-frame-landscape::after {
+        right: 15px;
+        width: 6px;
+        height: 6px;
+    }
+}
+
