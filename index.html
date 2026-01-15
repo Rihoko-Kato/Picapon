@@ -277,12 +277,32 @@
             <h2>ぴかぽん公式ソング</h2>
             <div class="song-container">
                 <p class="song-description">ぴかぽんとの暮らしをイメージした、<br>心温まる公式テーマソングです。<br>ぜひ聴いてみてください。</p>
-                <div class="audio-player-wrapper">
-                    <audio controls controlsList="nodownload">
-                        <source src="music/picapon_song.mp3" type="audio/mpeg">
-                        お使いのブラウザはaudio要素をサポートしていません。
-                    </audio>
+                
+                <!-- レコードプレーヤー -->
+                <div class="record-player-wrapper">
+                    <div class="record-player" id="record-player">
+                        <!-- レコード盤 -->
+                        <div class="vinyl-record" id="vinyl-record">
+                            <div class="vinyl-grooves"></div>
+                            <div class="vinyl-label">
+                                <span class="label-text">Picapon<br>Song</span>
+                            </div>
+                        </div>
+                        <!-- トーンアーム（針） -->
+                        <div class="tone-arm" id="tone-arm">
+                            <div class="tone-arm-axis"></div>
+                            <div class="tone-arm-rod"></div>
+                            <div class="tone-arm-head"></div>
+                        </div>
+                        <div class="click-hint">Click to Play</div>
+                    </div>
                 </div>
+
+                <!-- 音源（非表示で制御） -->
+                <audio id="picapon-audio">
+                    <source src="music/picapon_song.mp3" type="audio/mpeg">
+                </audio>
+
                 <button id="toggle-lyrics-btn" class="toggle-lyrics-btn">歌詞を表示 ▼</button>
                 <div id="lyrics-container" class="lyrics-container">
                     <div class="lyrics-text">
@@ -443,6 +463,45 @@
                         lyricsContainer.classList.add('active');
                         lyricsBtn.textContent = '歌詞を閉じる ▲';
                     }
+                });
+            }
+
+            // レコードプレーヤー制御
+            const recordPlayer = document.getElementById('record-player');
+            const vinylRecord = document.getElementById('vinyl-record');
+            const toneArm = document.getElementById('tone-arm');
+            const audio = document.getElementById('picapon-audio');
+            const clickHint = document.querySelector('.click-hint');
+
+            if (recordPlayer && audio) {
+                recordPlayer.addEventListener('click', () => {
+                    if (audio.paused) {
+                        // 再生開始フロー
+                        
+                        // 1. 針を動かす
+                        toneArm.classList.add('playing');
+                        
+                        // 2. 少し遅れてレコードを回し、音を出す（針が落ちるタイミング）
+                        setTimeout(() => {
+                            vinylRecord.classList.add('playing');
+                            audio.play().catch(e => console.log('再生エラー:', e));
+                            clickHint.textContent = 'Playing...';
+                        }, 500); // 0.5秒待つ
+
+                    } else {
+                        // 停止フロー
+                        audio.pause();
+                        vinylRecord.classList.remove('playing');
+                        toneArm.classList.remove('playing');
+                        clickHint.textContent = 'Click to Play';
+                    }
+                });
+
+                // 曲が終わったら自動的に針を戻す
+                audio.addEventListener('ended', () => {
+                    vinylRecord.classList.remove('playing');
+                    toneArm.classList.remove('playing');
+                    clickHint.textContent = 'Click to Play';
                 });
             }
 

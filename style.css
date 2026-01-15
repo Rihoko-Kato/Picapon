@@ -1797,3 +1797,178 @@ footer {
     }
 }
 
+
+/* レコードプレーヤー */
+.record-player-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.record-player {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    background: radial-gradient(circle at center, #fdfcf5 50%, #eee 100%);
+    border: 4px solid #e0e0e0;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.record-player:hover {
+    transform: scale(1.02);
+}
+
+.record-player:hover .click-hint {
+    opacity: 1;
+}
+
+/* レコード盤 */
+.vinyl-record {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background-color: #1a1a1a;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-out; /* 停止時はゆっくり止まる */
+}
+
+/* 回転アニメーション */
+.vinyl-record.playing {
+    animation: spinVinyl 3s linear infinite;
+    animation-delay: 0.5s; /* 針が落ちるまで待つ */
+}
+
+@keyframes spinVinyl {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* レコードの溝 */
+.vinyl-grooves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: repeating-radial-gradient(
+        #222 0, 
+        #222 2px, 
+        #111 3px, 
+        #111 4px
+    );
+    opacity: 0.8;
+}
+
+/* レコードのラベル */
+.vinyl-label {
+    position: relative;
+    z-index: 2;
+    width: 90px;
+    height: 90px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px #222;
+}
+
+.label-text {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    line-height: 1.2;
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+/* センターホール */
+.vinyl-label::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+/* トーンアーム（針） */
+.tone-arm {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 180px;
+    z-index: 10;
+    transform-origin: 80px 20px; /* 回転軸 */
+    transform: rotate(0deg);
+    transition: transform 0.6s cubic-bezier(0.5, 0, 0.5, 1);
+    pointer-events: none; /* クリックを邪魔しない */
+}
+
+.tone-arm.playing {
+    transform: rotate(25deg); /* レコードの上へ移動 */
+}
+
+.tone-arm-axis {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #ddd;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tone-arm-rod {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    width: 6px;
+    height: 140px;
+    background-color: #bfbfbf;
+    transform-origin: top center;
+    transform: rotate(-15deg);
+}
+
+.tone-arm-head {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    width: 20px;
+    height: 35px;
+    background-color: #444;
+    border-radius: 2px;
+    transform: rotate(-15deg);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+}
+
+/* クリックヒント */
+.click-hint {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: bold;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
