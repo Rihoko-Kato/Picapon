@@ -538,43 +538,6 @@
                 video.addEventListener('play', updateButtonState);
                 video.addEventListener('pause', updateButtonState);
             }
-
-            // ぴかぽんを隕石画像から発射する処理
-            function createFallingPika() {
-                // 画像があるコンテナを取得
-                const container = document.querySelector('.concept-image');
-                if (!container) return;
-
-                const pika = document.createElement('img');
-                pika.src = 'images/insekipon1.png';
-                pika.classList.add('falling-pika');
-                container.appendChild(pika);
-
-                // もっと大きく！
-                const size = Math.random() * 80 + 80; // 80px〜160px
-                pika.style.width = `${size}px`;
-
-                // CSSでの初期設定を上書きして、
-                // insekipon.png (top:50px, right:-80px) の位置から発射
-                // 少しだけ位置をばらつかせることで、隕石の裏側全体から出ているように見せる
-                const startTop = 50 + Math.random() * 50; 
-                const startRight = -80 + Math.random() * 40;
-
-                pika.style.top = `${startTop}px`;
-                pika.style.left = 'auto'; // leftは無効化
-                pika.style.right = `${startRight}px`;
-                
-                // 特定のanimationを適用
-                const duration = Math.random() * 1.5 + 1.2; // 1.2〜2.7秒
-                pika.style.animation = `pikaShoot ${duration}s linear forwards`;
-
-                setTimeout(() => {
-                    pika.remove();
-                }, duration * 1000);
-            }
-
-            // 頻度を高めていっぱい発射！
-            setInterval(createFallingPika, 400);
         });
     </script>
 
