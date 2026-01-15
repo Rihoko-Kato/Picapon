@@ -465,6 +465,9 @@
 
                 // ボタンクリックで再生/停止
                 recordBtn.addEventListener('click', () => {
+                    // ユーザー操作時にミュートを解除して音を出す
+                    video.muted = false;
+                    
                     if (video.paused) {
                         video.play();
                     } else {
