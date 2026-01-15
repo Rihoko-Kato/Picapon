@@ -2001,3 +2001,38 @@ footer {
     }
 }
 
+
+/* コンセプトセクションに隕石（ぴかぽん）を降らせるための設定 */
+#concept {
+    position: relative;
+    overflow: hidden; /* 枠外にはみ出さないように */
+}
+
+/* 降り注ぐぴかぽん（修正版） */
+.falling-pika {
+    position: absolute; /* 画面全体ではなくセクション内に */
+    top: -200px;
+    z-index: 5; /* テキストや元の画像より手前に来るかも */
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform;
+}
+
+@keyframes pikaFall {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        /* 回転させずに斜め左下に突っ切る */
+        transform: translate(-1200px, 800px); 
+        opacity: 0;
+    }
+}
+

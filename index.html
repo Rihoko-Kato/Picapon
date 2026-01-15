@@ -539,39 +539,37 @@
                 video.addEventListener('pause', updateButtonState);
             }
 
-            // ぴかぽんをいっぱい降らせる処理
+            // ぴかぽんをいっぱい降らせる処理（コンセプトセクション限定・隕石モード）
             function createFallingPika() {
+                const section = document.getElementById('concept');
+                if (!section) return;
+
                 const pika = document.createElement('img');
                 pika.src = 'images/insekipon1.png';
                 pika.classList.add('falling-pika');
-                document.body.appendChild(pika);
+                section.appendChild(pika);
 
-                // ランダムな設定
-                const size = Math.random() * 50 + 30; // 30px〜80pxのサイズ
+                // もっと大きく！
+                const size = Math.random() * 100 + 100; // 100px〜200pxの特大サイズ
                 pika.style.width = `${size}px`;
 
-                // 開始位置（画面の右上エリアを中心に広く散らす）
-                // 画面幅の半分(中央)〜画面幅の1.5倍(右外)の範囲からスタート
-                const startX = Math.random() * window.innerWidth + window.innerWidth * 0.2;
+                // 開始位置（セクションの右側〜右外あたりから）
+                // 隕石のように右斜め上から左斜め下へ
+                const sectionWidth = section.offsetWidth;
+                const startX = Math.random() * (sectionWidth * 0.8) + (sectionWidth * 0.2); 
                 pika.style.left = `${startX}px`;
 
-                // アニメーション時間（スピードの変化）
-                const duration = Math.random() * 5 + 3; // 3〜8秒かけて落ちる
+                // スピード（隕石らしく少し速め含む）
+                const duration = Math.random() * 1.5 + 1.5; // 1.5〜3秒
                 pika.style.animation = `pikaFall ${duration}s linear forwards`;
 
-                // アニメーションが終わったら要素を削除してメモリ節約
                 setTimeout(() => {
                     pika.remove();
                 }, duration * 1000);
             }
 
-            // 0.8秒ごとにぴかぽんを生成（いっぱい降らせる！）
-            setInterval(createFallingPika, 800);
-            
-            // 最初にいくつか生成しておく
-            for(let i=0; i<5; i++) {
-                setTimeout(createFallingPika, i * 500);
-            }
+            // 頻度を高めていっぱい降らせる
+            setInterval(createFallingPika, 500);
         });
     </script>
 
