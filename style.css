@@ -1675,3 +1675,36 @@ footer {
     z-index: 100 !important; /* 他の要素（カメラフレームなど）よりも確実に手前に */
 }
 
+
+/* 録画ボタンのアニメーション改修 */
+.record-btn {
+    background-color: transparent; /* 背景色削除 */
+    border: 5px solid #fff; /* 外枠を少し太く */
+    padding: 3px; /* 内側との隙間 */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* 影 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 既存のbefore/afterをリセット */
+.record-btn::before { display: none; }
+
+/* 内側の変形する赤い部分をafterで作成 */
+.record-btn::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #ff3b30;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* ぬるっとした動き */
+    transform: scale(0.9); /* 少し隙間を空ける */
+}
+
+/* 録画中（四角くなる） */
+.record-btn.recording::after {
+    transform: scale(0.55); /* 縮小 */
+    border-radius: 15%; /* 角丸四角に */
+}
+

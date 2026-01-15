@@ -444,6 +444,37 @@
                     }
                 });
             }
+
+            // カメラ動画制御
+            const video = document.querySelector('.viewfinder');
+            const recordBtn = document.querySelector('.record-btn');
+
+            if (video && recordBtn) {
+                // ボタンの状態を更新する関数
+                const updateButtonState = () => {
+                    if (!video.paused) {
+                        recordBtn.classList.add('recording');
+                    } else {
+                        recordBtn.classList.remove('recording');
+                    }
+                };
+
+                // 初期状態を確認
+                updateButtonState();
+
+                // ボタンクリックで再生/停止
+                recordBtn.addEventListener('click', () => {
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+
+                // 動画自体のイベントも監視（ループなどで止まった場合など）
+                video.addEventListener('play', updateButtonState);
+                video.addEventListener('pause', updateButtonState);
+            }
         });
     </script>
 
