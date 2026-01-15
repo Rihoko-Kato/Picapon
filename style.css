@@ -1778,3 +1778,22 @@ footer {
     }
 }
 
+
+/* スマホ表示の最終調整：ラッパーのオーバーフロー解除とコンテナの配置 */
+@media (max-width: 768px) {
+    .smartphone-frame-wrapper {
+        overflow: visible !important; /* 絶対に切り取らせない */
+        padding-left: 20px; /* 左側に指用のスペースを少し確保 */
+        padding-right: 20px;
+    }
+
+    .phone-and-hand-container {
+        width: 780px;
+        height: 380px;
+        transform: scale(0.42); /* 安全なサイズまで縮小 */
+        transform-origin: center center;
+        margin: -100px auto; /* 上下を縮めて中央揃え */
+        left: 0; /* 強制配置 */
+    }
+}
+
